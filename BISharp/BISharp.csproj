@@ -61,7 +61,7 @@
     <Compile Include="Contracts\Table.cs" />
     <Compile Include="Contracts\Tiles.cs" />
     <Compile Include="DatasetsClient.cs" />
-    <Compile Include="PowerBI.cs" />
+    <Compile Include="PowerBiAuthentication.cs" />
     <Compile Include="DashboardClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Serialization\JsonSerializer.cs" />

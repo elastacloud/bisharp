@@ -6,50 +6,48 @@ using System.Text;
 using System.Threading.Tasks;
 using BISharp.Contracts;
 using System.Threading;
+using resourceManagement.Contracts;
 
 namespace resourceManagement
 {
-    class resourceMeasures
-    {
-        public int RPM { get; set; }
-        public double Temperature { get; set; }
-        public string Name { get; set; }
-        public string Id { get; set; }
-        public DateTime LastMeasure { get; set; }
-        public DateTime InServiceDate { get; set; }
-        public bool IsRunning { get; set; }
-    }
-    class resourceMeasures2
-    {
-        public int RPM { get; set; }
-        public double Temperature { get; set; }
-        public string Name { get; set; }
-        public string Id { get; set; }
-        public DateTime LastMeasure { get; set; }
-        public DateTime InServiceDate { get; set; }
-        public bool IsRunning { get; set; }
-        public bool RequiresService { get; set; }
-    }
+
     class Program
     {
+        static PowerBiAuthentication pbi = new PowerBiAuthentication("007fb3ab-bf10-437b-9bea-1825f1086d00");
         static void Main(string[] args)
         {
-            var dash = new DashboardClient(new PowerBI());
-            var dashboards = dash.List();
+            Console.WriteLine("Querying Dashboards");
+            QueryDashboards().Wait();
+
+            Console.WriteLine("Querying Datasets");
+            QueryDatasets().Wait();
+            Console.WriteLine("Generating Data");
+            GenerateData().Wait();
+
+            Console.Read();
+        }
+
+        private async static Task QueryDashboards()
+        {
+            var dashboardClient = new DashboardClient(pbi);
+            var dashboards = await dashboardClient.List();
 
             foreach (var dashboard in dashboards.value)
             {
                 Console.WriteLine("{0}\t{1}", dashboard.displayName, dashboard.id);
 
-                var tiles = dash.Tiles(dashboard.id);
+                var tiles = await dashboardClient.Tiles(dashboard.id);
                 foreach (var tile in tiles.value)
                 {
                     Console.WriteLine(tile.embedUrl);
                 }
             }
+        }
 
-            var dataClient = new DatasetsClient(new PowerBI());
-            var datasets = dataClient.List();
+        private async static Task QueryDatasets()
+        {
+            var dataClient = new DatasetsClient(pbi);
+            var datasets = await dataClient.List();
 
             foreach (var dataset in datasets.value)
             {
@@ -60,20 +58,29 @@ namespace resourceManagement
             Dataset created;
             if (Console.ReadKey().KeyChar == 'Y')
             {
-                created = dataClient.Create("resourceManager", true, typeof(resourceMeasures));
+                created = await dataClient.Create("resourceManager", true, typeof(resourceMeasures));
             }
-            else {
-                created = dataClient.List().value.First(ds => ds.name == "resourceManager");
+            else
+            {
+                created = (await dataClient.List()).value.First(ds => ds.name == "resourceManager");
             }
 
-            var tables = dataClient.ListTables(created.id);
-            //ListTables(tables);
+            var tables = await dataClient.ListTables(created.id);
+            ListTables(tables);
             //var table = dataClient.GetTable(created.id, tables.value.First().name);
             //ListColumns(table.columns);
 
-            //data.UpdateTable(created.id, tables.value.First().name, typeof(resourceMeasures2));
-            var dataRows = new TableRows<resourceMeasures>();            
-           
+            var table = await dataClient.UpdateTable(created.id, tables.value.First().name, typeof(resourceMeasures2));
+        }
+
+        private async static Task GenerateData()
+        {
+            var dataClient = new DatasetsClient(pbi);
+            var created = (await dataClient.List()).value.First(ds => ds.name == "resourceManager");
+            var tables = await dataClient.ListTables(created.id);
+
+            var dataRows = new TableRows<resourceMeasures>();
+
             for (int i = 0; i < 1000; i++)
             {
                 dataRows.rows.Add(new resourceMeasures()
@@ -87,8 +94,8 @@ namespace resourceManagement
                     Temperature = 431.6
                 });
             }
-            dataClient.ClearRows(created.id, tables.value.First().name);
-            dataClient.AddRows(created.id, tables.value.First().name, dataRows);
+            await dataClient.ClearRows(created.id, tables.value.First().name);
+            await dataClient.AddRows(created.id, tables.value.First().name, dataRows);
             while (true)
             {
                 Console.Write(".");
@@ -101,19 +108,18 @@ namespace resourceManagement
                     Thread.Sleep(1);
                 }
 
-                dataClient.AddRows(created.id, tables.value.First().name, dataRows);
+                await dataClient.AddRows(created.id, tables.value.First().name, dataRows);
             }
-            dataClient.ClearRows(created.id, tables.value.First().name);
-
-            Console.Read();
+            await dataClient.ClearRows(created.id, tables.value.First().name);
         }
 
         private static void ListTables(BISharp.Contracts.Tables tables)
         {
             foreach (var table in tables.value)
             {
-                Console.WriteLine("{0}\t{1}", table.name, table.columns.Count);
-                ListColumns(table.columns);
+                Console.WriteLine(table.name);
+                if (table.columns != null)
+                    ListColumns(table.columns);
             }
         }
 

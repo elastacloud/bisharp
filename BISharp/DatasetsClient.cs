@@ -10,25 +10,25 @@ namespace BISharp
 {
     public class DatasetsClient
     {
-        private PowerBI _bi;
+        private PowerBiAuthentication _bi;
         private RestClient _client;
 
-        public DatasetsClient(PowerBI bi)
+        public DatasetsClient(PowerBiAuthentication bi)
         {
             this._bi = bi;
             this._client = new RestClient("https://api.powerbi.com");
         }
 
-        public Datasets List()
+        public async Task<Datasets> List()
         {
             var request = new RestRequest("v1.0/myorg/datasets", Method.GET);
             request.AddHeader("Authorization", _bi._token.CreateAuthorizationHeader());
 
-            var response = _client.Execute<Datasets>(request);
+            var response = await _client.ExecuteTaskAsync<Datasets>(request);
             return response.Data;
         }
 
-        public Dataset Create(string datasetName, bool useBasicFifoRetentionPolicy, params Type[] tableStructures)
+        public async Task<Dataset> Create(string datasetName, bool useBasicFifoRetentionPolicy, params Type[] tableStructures)
         {
             var defaultRetentionPolicy = useBasicFifoRetentionPolicy ? "basicFIFO" : "None";
             var tables = tableStructures.Select(t => Table.FromType(t)).ToList();
@@ -40,30 +40,30 @@ namespace BISharp
             request.RequestFormat = DataFormat.Json;
             request.AddBody(dataset);
 
-            var response = _client.Execute<Dataset>(request);
+            var response = await _client.ExecuteTaskAsync<Dataset>(request);
             return response.Data;
         }
 
-        public Tables ListTables(string datasetId)
+        public async Task<Tables> ListTables(string datasetId)
         {
             var request = new RestRequest($"v1.0/myorg/datasets/{datasetId}/tables", Method.GET);
             request.AddHeader("Authorization", _bi._token.CreateAuthorizationHeader());
 
-            var response = _client.Execute<Tables>(request);
+            var response = await _client.ExecuteTaskAsync<Tables>(request);
             return response.Data;
         }
 
-        public Table GetTable(string datasetId, string tableName)
+        public async Task<Table> GetTable(string datasetId, string tableName)
         {
             throw new NotImplementedException("This isn't found");
             var request = new RestRequest($"v1.0/myorg/datasets/{datasetId}/tables/{tableName}", Method.GET);
             request.AddHeader("Authorization", _bi._token.CreateAuthorizationHeader());
 
-            var response = _client.Execute<Table>(request);
+            var response = await _client.ExecuteTaskAsync<Table>(request);
             return response.Data;
         }
 
-        public Table UpdateTable(string datasetId, string tableName, Type tableStructure)
+        public async Task<Table> UpdateTable(string datasetId, string tableName, Type tableStructure)
         {
             var table = Table.FromType(tableStructure);
             table.name = tableName;
@@ -73,10 +73,10 @@ namespace BISharp
             request.RequestFormat = DataFormat.Json;
             request.AddBody(table);
 
-            var response = _client.Execute<Table>(request);
+            var response = await _client.ExecuteTaskAsync<Table>(request);
             return response.Data;
         }
-        public Table AddRows<TTableRows>(string datasetId, string tableName, TableRows<TTableRows> rows)
+        public async Task<Table> AddRows<TTableRows>(string datasetId, string tableName, TableRows<TTableRows> rows)
         {
             var request = new RestRequest($"v1.0/myorg/datasets/{datasetId}/tables/{tableName}/rows", Method.POST)
             { JsonSerializer = new Serialization.JsonSerializer() };
@@ -84,15 +84,15 @@ namespace BISharp
             request.RequestFormat = DataFormat.Json;
             request.AddBody(rows);
 
-            var response = _client.Execute<Table>(request);
+            var response = await _client.ExecuteTaskAsync<Table>(request);
             return response.Data;
         }
-        public Table ClearRows(string datasetId, string tableName)
+        public async Task<Table> ClearRows(string datasetId, string tableName)
         {
             var request = new RestRequest($"v1.0/myorg/datasets/{datasetId}/tables/{tableName}/rows", Method.DELETE);
             request.AddHeader("Authorization", _bi._token.CreateAuthorizationHeader());
 
-            var response = _client.Execute<Table>(request);
+            var response = await _client.ExecuteTaskAsync<Table>(request);
             return response.Data;
         }
     }

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BISharp", "..\BISharp\BISha
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "resourceManagement", "resourceManagement\resourceManagement.csproj", "{786AAEB3-DD86-44A5-B21A-8B5F256A521A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BISharp.Tests", "BISharp.Tests\BISharp.Tests.csproj", "{C4248E20-DCC8-4C20-AE0F-06DAD818AB11}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{786AAEB3-DD86-44A5-B21A-8B5F256A521A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{786AAEB3-DD86-44A5-B21A-8B5F256A521A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{786AAEB3-DD86-44A5-B21A-8B5F256A521A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4248E20-DCC8-4C20-AE0F-06DAD818AB11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4248E20-DCC8-4C20-AE0F-06DAD818AB11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4248E20-DCC8-4C20-AE0F-06DAD818AB11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4248E20-DCC8-4C20-AE0F-06DAD818AB11}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -7,6 +7,5 @@ c:\src\powerbi\BISharp\bin\Debug\RestSharp.xml
 c:\src\powerbi\BISharp\obj\Debug\BISharp.dll
 c:\src\powerbi\BISharp\obj\Debug\BISharp.pdb
 C:\src\powerbi\BISharp\bin\Debug\Microsoft.IdentityModel.Clients.ActiveDirectory.WindowsForms.dll
-c:\src\powerbi\BISharp\obj\Debug\BISharp.csprojResolveAssemblyReference.cache
 c:\src\powerbi\BISharp\bin\Debug\Newtonsoft.Json.dll
 c:\src\powerbi\BISharp\bin\Debug\Newtonsoft.Json.xml
