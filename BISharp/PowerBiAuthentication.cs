@@ -15,12 +15,16 @@ namespace BISharp
     {
         private AuthenticationResult _token { get; set; }
         private string _clientId;
+        private IExternalAuth _externalAuth;
 
         public PowerBiAuthentication(string clientId)
         {
             this._clientId = clientId;
             getAccessToken();
         }
+
+        public PowerBiAuthentication(IExternalAuth extAuth)
+        { this._externalAuth = extAuth; }
 
         private void getAccessToken()
         {
@@ -35,6 +39,9 @@ namespace BISharp
 
         public string GetAccessToken()
         {
+            if (_externalAuth != null)
+                return _externalAuth.GetBearerToken();
+
             return _token.CreateAuthorizationHeader();
         }
     }

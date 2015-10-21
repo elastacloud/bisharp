@@ -13,7 +13,7 @@ namespace resourceManagement
 
     class Program
     {
-        static PowerBiAuthentication pbi = new PowerBiAuthentication("007fb3ab-bf10-437b-9bea-1825f1086d00");
+        static PowerBiAuthentication pbi = new PowerBiAuthentication(new HardCodedExternalAuth());
         static void Main(string[] args)
         {
             Console.WriteLine("Querying Dashboards");
@@ -58,7 +58,7 @@ namespace resourceManagement
             Dataset created;
             if (Console.ReadKey().KeyChar == 'Y')
             {
-                created = await dataClient.Create("resourceManager", true, typeof(resourceMeasures));
+                created = await dataClient.Create<resourceMeasures>("resourceManager", true);
             }
             else
             {
