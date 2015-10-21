@@ -1,0 +1,16 @@
+c:\src\powerbi\resourceManagement\BISharp.Tests\bin\Debug\BISharp.Tests.dll
+c:\src\powerbi\resourceManagement\BISharp.Tests\bin\Debug\BISharp.Tests.pdb
+c:\src\powerbi\resourceManagement\BISharp.Tests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+c:\src\powerbi\resourceManagement\BISharp.Tests\obj\Debug\BISharp.Tests.dll
+c:\src\powerbi\resourceManagement\BISharp.Tests\obj\Debug\BISharp.Tests.pdb
+c:\src\powerbi\resourceManagement\BISharp.Tests\obj\Debug\BISharp.Tests.csprojResolveAssemblyReference.cache
+c:\src\powerbi\resourceManagement\BISharp.Tests\bin\Debug\BISharp.dll
+c:\src\powerbi\resourceManagement\BISharp.Tests\bin\Debug\Moq.dll
+c:\src\powerbi\resourceManagement\BISharp.Tests\bin\Debug\RestSharp.dll
+c:\src\powerbi\resourceManagement\BISharp.Tests\bin\Debug\Microsoft.IdentityModel.Clients.ActiveDirectory.dll
+c:\src\powerbi\resourceManagement\BISharp.Tests\bin\Debug\Newtonsoft.Json.dll
+c:\src\powerbi\resourceManagement\BISharp.Tests\bin\Debug\BISharp.pdb
+c:\src\powerbi\resourceManagement\BISharp.Tests\bin\Debug\Moq.xml
+c:\src\powerbi\resourceManagement\BISharp.Tests\bin\Debug\RestSharp.xml
+c:\src\powerbi\resourceManagement\BISharp.Tests\bin\Debug\Microsoft.IdentityModel.Clients.ActiveDirectory.xml
+c:\src\powerbi\resourceManagement\BISharp.Tests\bin\Debug\Newtonsoft.Json.xml

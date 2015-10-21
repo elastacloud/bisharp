@@ -7,9 +7,13 @@ using System.Threading.Tasks;
 
 namespace BISharp
 {
-    public class PowerBiAuthentication
+    public interface IPowerBiAuthentication
     {
-        internal AuthenticationResult _token;
+        string GetAccessToken();
+    }
+    public class PowerBiAuthentication : IPowerBiAuthentication
+    {
+        private AuthenticationResult _token { get; set; }
         private string _clientId;
 
         public PowerBiAuthentication(string clientId)
@@ -29,5 +33,9 @@ namespace BISharp
                 new Uri(redirectUri), PromptBehavior.Always);            
         }
 
+        public string GetAccessToken()
+        {
+            return _token.CreateAuthorizationHeader();
+        }
     }
 }

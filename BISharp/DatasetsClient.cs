@@ -10,19 +10,22 @@ namespace BISharp
 {
     public class DatasetsClient
     {
-        private PowerBiAuthentication _bi;
-        private RestClient _client;
+        private IPowerBiAuthentication _bi;
+        private IRestClient _client;
 
-        public DatasetsClient(PowerBiAuthentication bi)
+        public DatasetsClient(IPowerBiAuthentication bi) : this(bi, new RestClient("https://api.powerbi.com"))
+        {
+        }
+        public DatasetsClient(IPowerBiAuthentication bi, IRestClient client)
         {
             this._bi = bi;
-            this._client = new RestClient("https://api.powerbi.com");
+            this._client = client;
+            this._client.AddDefaultHeader("Authorization", _bi.GetAccessToken());
         }
 
         public async Task<Datasets> List()
         {
-            var request = new RestRequest("v1.0/myorg/datasets", Method.GET);
-            request.AddHeader("Authorization", _bi._token.CreateAuthorizationHeader());
+            IRestRequest request = new RestRequest("v1.0/myorg/datasets", Method.GET);
 
             var response = await _client.ExecuteTaskAsync<Datasets>(request);
             return response.Data;
@@ -36,7 +39,6 @@ namespace BISharp
 
             var request = new RestRequest($"v1.0/myorg/datasets?defaultRetentionPolicy={defaultRetentionPolicy}", Method.POST)
             { JsonSerializer = new Serialization.JsonSerializer() };
-            request.AddHeader("Authorization", _bi._token.CreateAuthorizationHeader());
             request.RequestFormat = DataFormat.Json;
             request.AddBody(dataset);
 
@@ -47,7 +49,6 @@ namespace BISharp
         public async Task<Tables> ListTables(string datasetId)
         {
             var request = new RestRequest($"v1.0/myorg/datasets/{datasetId}/tables", Method.GET);
-            request.AddHeader("Authorization", _bi._token.CreateAuthorizationHeader());
 
             var response = await _client.ExecuteTaskAsync<Tables>(request);
             return response.Data;
@@ -57,7 +58,6 @@ namespace BISharp
         {
             throw new NotImplementedException("This isn't found");
             var request = new RestRequest($"v1.0/myorg/datasets/{datasetId}/tables/{tableName}", Method.GET);
-            request.AddHeader("Authorization", _bi._token.CreateAuthorizationHeader());
 
             var response = await _client.ExecuteTaskAsync<Table>(request);
             return response.Data;
@@ -69,7 +69,6 @@ namespace BISharp
             table.name = tableName;
             var request = new RestRequest($"v1.0/myorg/datasets/{datasetId}/tables/{tableName}", Method.PUT)
             { JsonSerializer = new Serialization.JsonSerializer() };
-            request.AddHeader("Authorization", _bi._token.CreateAuthorizationHeader());
             request.RequestFormat = DataFormat.Json;
             request.AddBody(table);
 
@@ -80,7 +79,6 @@ namespace BISharp
         {
             var request = new RestRequest($"v1.0/myorg/datasets/{datasetId}/tables/{tableName}/rows", Method.POST)
             { JsonSerializer = new Serialization.JsonSerializer() };
-            request.AddHeader("Authorization", _bi._token.CreateAuthorizationHeader());
             request.RequestFormat = DataFormat.Json;
             request.AddBody(rows);
 
@@ -90,7 +88,6 @@ namespace BISharp
         public async Task<Table> ClearRows(string datasetId, string tableName)
         {
             var request = new RestRequest($"v1.0/myorg/datasets/{datasetId}/tables/{tableName}/rows", Method.DELETE);
-            request.AddHeader("Authorization", _bi._token.CreateAuthorizationHeader());
 
             var response = await _client.ExecuteTaskAsync<Table>(request);
             return response.Data;
