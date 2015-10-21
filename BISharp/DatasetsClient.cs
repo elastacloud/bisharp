@@ -30,7 +30,30 @@ namespace BISharp
             var response = await _client.ExecuteTaskAsync<Datasets>(request);
             return response.Data;
         }
-
+        public async Task<Dataset> Create<T1>(string datasetName, bool useBasicFifoRetentionPolicy)
+        {
+            return await Create(datasetName, useBasicFifoRetentionPolicy, new[] { typeof(T1) });
+        }
+        public async Task<Dataset> Create<T1, T2>(string datasetName, bool useBasicFifoRetentionPolicy)
+        {
+            return await Create(datasetName, useBasicFifoRetentionPolicy, new[] { typeof(T1), typeof(T2) });
+        }
+        public async Task<Dataset> Create<T1, T2, T3>(string datasetName, bool useBasicFifoRetentionPolicy)
+        {
+            return await Create(datasetName, useBasicFifoRetentionPolicy, new[] { typeof(T1), typeof(T2), typeof(T3) });
+        }
+        public async Task<Dataset> Create<T1, T2, T3, T4>(string datasetName, bool useBasicFifoRetentionPolicy)
+        {
+            return await Create(datasetName, useBasicFifoRetentionPolicy, new[] { typeof(T1), typeof(T2), typeof(T3), typeof(T4) });
+        }
+        public async Task<Dataset> Create<T1, T2, T3, T4, T5>(string datasetName, bool useBasicFifoRetentionPolicy)
+        {
+            return await Create(datasetName, useBasicFifoRetentionPolicy, new[] { typeof(T1), typeof(T2), typeof(T3), typeof(T4), typeof(T5) });
+        }
+        public async Task<Dataset> Create<T1, T2, T3, T4, T5, T6>(string datasetName, bool useBasicFifoRetentionPolicy)
+        {
+            return await Create(datasetName, useBasicFifoRetentionPolicy, new[] { typeof(T1), typeof(T2), typeof(T3), typeof(T4), typeof(T5), typeof(T6) });
+        }
         public async Task<Dataset> Create(string datasetName, bool useBasicFifoRetentionPolicy, params Type[] tableStructures)
         {
             var defaultRetentionPolicy = useBasicFifoRetentionPolicy ? "basicFIFO" : "None";
@@ -62,7 +85,10 @@ namespace BISharp
             var response = await _client.ExecuteTaskAsync<Table>(request);
             return response.Data;
         }
-
+        public async Task<Table> UpdateTableSchema<TnewTableStructure>(string datasetId, string tableName)
+        {
+            return await UpdateTableSchema(datasetId, tableName, typeof(TnewTableStructure));
+        }
         public async Task<Table> UpdateTableSchema(string datasetId, string tableName, Type newTableStructure)
         {
             var table = Table.FromType(newTableStructure);
