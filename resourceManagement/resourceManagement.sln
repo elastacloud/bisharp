@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BISharp", "..\BISharp\BISharp.csproj", "{0CC49747-5111-42FC-8A13-E4E68B95A8E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "resourceManagement", "resourceManagement\resourceManagement.csproj", "{786AAEB3-DD86-44A5-B21A-8B5F256A521A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0CC49747-5111-42FC-8A13-E4E68B95A8E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CC49747-5111-42FC-8A13-E4E68B95A8E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CC49747-5111-42FC-8A13-E4E68B95A8E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CC49747-5111-42FC-8A13-E4E68B95A8E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{786AAEB3-DD86-44A5-B21A-8B5F256A521A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{786AAEB3-DD86-44A5-B21A-8B5F256A521A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{786AAEB3-DD86-44A5-B21A-8B5F256A521A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{786AAEB3-DD86-44A5-B21A-8B5F256A521A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
