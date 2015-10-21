@@ -59,6 +59,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Authentication\DashboardClientTests.cs" />
+    <Compile Include="DataSchema\ColumnsFromTypeTests.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

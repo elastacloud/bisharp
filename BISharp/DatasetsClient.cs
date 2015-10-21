@@ -63,9 +63,9 @@ namespace BISharp
             return response.Data;
         }
 
-        public async Task<Table> UpdateTable(string datasetId, string tableName, Type tableStructure)
+        public async Task<Table> UpdateTableSchema(string datasetId, string tableName, Type newTableStructure)
         {
-            var table = Table.FromType(tableStructure);
+            var table = Table.FromType(newTableStructure);
             table.name = tableName;
             var request = new RestRequest($"v1.0/myorg/datasets/{datasetId}/tables/{tableName}", Method.PUT)
             { JsonSerializer = new Serialization.JsonSerializer() };

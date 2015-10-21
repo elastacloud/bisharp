@@ -11,10 +11,10 @@ using System.Threading.Tasks;
 namespace BISharp.Tests.Authentication
 {
     [TestClass]
-    public class DashboardClientTests
+    public class DatasetsClientTest
     {
         [TestMethod]
-        public async Task ListDashboard_AllGood_SetsAuthHeader()
+        public async Task ListDatasets_AllGood_SetsAuthHeader()
         {
             Mock<IPowerBiAuthentication> mockPBi = new Mock<IPowerBiAuthentication>();
             mockPBi.Setup(t => t.GetAccessToken()).Returns("hello");

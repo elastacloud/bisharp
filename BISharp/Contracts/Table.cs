@@ -16,7 +16,7 @@ namespace BISharp.Contracts
         public string name { get; set; }
         public List<Column> columns { get; set; }
 
-        internal static Table FromType(Type t)
+        public static Table FromType(Type t)
         {
             var table = new Table();
             table.name = t.Name;
