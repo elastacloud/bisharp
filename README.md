@@ -34,7 +34,7 @@ There's an example in ~/HardCodedExternalAuth.cs which passes a pregenerated bea
 
 ## Dashboards
 
-``csharp
+```cs
     private async static Task QueryDashboards()
     {
         var dashboardClient = new DashboardClient(pbi);
@@ -51,4 +51,4 @@ There's an example in ~/HardCodedExternalAuth.cs which passes a pregenerated bea
             }
         }
     }
-`
+```
