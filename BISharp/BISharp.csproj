@@ -58,9 +58,11 @@
   <ItemGroup>
     <Compile Include="Contracts\Dashboard.cs" />
     <Compile Include="Contracts\Datasets.cs" />
+    <Compile Include="Contracts\Groups.cs" />
     <Compile Include="Contracts\Table.cs" />
     <Compile Include="Contracts\Tiles.cs" />
     <Compile Include="DatasetsClient.cs" />
+    <Compile Include="GroupClient.cs" />
     <Compile Include="IExternalAuth.cs" />
     <Compile Include="PowerBiAuthentication.cs" />
     <Compile Include="DashboardClient.cs" />

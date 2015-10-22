@@ -13,9 +13,12 @@ namespace resourceManagement
 
     class Program
     {
-        static PowerBiAuthentication pbi = new PowerBiAuthentication(new HardCodedExternalAuth());
+        static PowerBiAuthentication pbi = new PowerBiAuthentication("007fb3ab-bf10-437b-9bea-1825f1086d00");
         static void Main(string[] args)
         {
+            Console.WriteLine("Querying Groups");
+            QueryGroups().Wait();
+
             Console.WriteLine("Querying Dashboards");
             QueryDashboards().Wait();
 
@@ -25,6 +28,16 @@ namespace resourceManagement
             GenerateData().Wait();
 
             Console.Read();
+        }
+        private async static Task QueryGroups()
+        {
+            var groupClient = new GroupClient(pbi);
+            var groups = await groupClient.Get();
+
+            foreach (var item in groups.value)
+            {
+                Console.WriteLine("{0}:{1}", item.name, item.id);
+            }
         }
 
         private async static Task QueryDashboards()
