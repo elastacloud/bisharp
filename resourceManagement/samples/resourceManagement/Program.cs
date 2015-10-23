@@ -7,13 +7,14 @@ using System.Threading.Tasks;
 using BISharp.Contracts;
 using System.Threading;
 using resourceManagement.Contracts;
+using System.Configuration;
 
 namespace resourceManagement
 {
 
     class Program
     {
-        static PowerBiAuthentication pbi = new PowerBiAuthentication("007fb3ab-bf10-437b-9bea-1825f1086d00");
+        static PowerBiAuthentication pbi = new PowerBiAuthentication(ConfigurationManager.AppSettings["ida:ClientId"]);
         static void Main(string[] args)
         {
             Console.WriteLine("Querying Groups");
