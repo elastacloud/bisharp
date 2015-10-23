@@ -9,8 +9,8 @@
         var m = {
                 action: "loadTile"
                 , accessToken: "@ViewBag.accessToken.ToString().Substring(6)"
-                , height: 500
-                , width: 722
+                , height: 250
+                , width: 361
         };
 
         message = JSON.stringify(m);
@@ -34,27 +34,34 @@
     }
 
 </script>
-
 <select onchange="window.location = '/PowerBI/Dash?dashId=' + this.value">
     @foreach (BISharp.Contracts.Dashboard dash in ViewBag.dashes)
     {
-        <option value="@dash.id" selected="@{ if (Request.Url.ToString().EndsWith(dash.id))
+        <option value="@dash.id" @{ if (Request.Url.ToString().EndsWith(dash.id))
             {
-                Output.Write("selected");
+                Output.Write("selected='selected'");
             }
-            else
-            {
-                Output.Write("notselected");
-            }
-            }">@dash.displayName</option>
+            }>@dash.displayName</option>
     }
 </select>
 
-@foreach (var tile in Model.value)
-{
-    <div>@tile.title</div>
-    <iframe src="@(tile.embedUrl)" onload="postActionLoadTile(this)" width="750" height="525" frameborder="1"></iframe>
-}
-
+<div class="container">
+    <div class="row">
+        @for (var i = 0; i < Model.value.Count; i++)
+        {
+            var tile = Model.value[i];
+            <div class="col-md-6">
+                <div>@tile.title</div>
+                <iframe src="@(tile.embedUrl)" onload="postActionLoadTile(this)" width="375" height="262" frameborder="1"></iframe>
+            </div>
+    
+        if ((i-1) % 2 == 0)
+        {
+            Output.Write("</div><div class='row'>");
+        }
+    
+        }
+    </div>
+</div>
 <h2>Index</h2>
 
