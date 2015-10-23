@@ -1,0 +1,60 @@
+﻿@model BISharp.Contracts.Tiles
+@{
+    ViewBag.Title = "Index";
+}
+
+<script>
+    function postActionLoadTile(postIframe) {
+        postIframe.setAttribute("frameborder", "0");
+        var m = {
+                action: "loadTile"
+                , accessToken: "@ViewBag.accessToken.ToString().Substring(6)"
+                , height: 500
+                , width: 722
+        };
+
+        message = JSON.stringify(m);
+        postIframe.contentWindow.postMessage(message, "*");
+
+    }
+
+    // listen for message to receive tile click messages. 
+    if (window.addEventListener) {
+        window.addEventListener("message", receiveMessage, false);
+    } else {
+        window.attachEvent("onmessage", receiveMessage);
+    }
+
+    //The embedded tile posts messages for clicks to parent window. Listen and handle as appropriate 
+    function receiveMessage(event) {
+        messageData = JSON.parse(event.data);
+        if (messageData.event === "tileClicked") {
+            window.open(messageData.navigationUrl);
+        }
+    }
+
+</script>
+
+<select onchange="window.location = '/PowerBI/Dash?dashId=' + this.value">
+    @foreach (BISharp.Contracts.Dashboard dash in ViewBag.dashes)
+    {
+        <option value="@dash.id" selected="@{ if (Request.Url.ToString().EndsWith(dash.id))
+            {
+                Output.Write("selected");
+            }
+            else
+            {
+                Output.Write("notselected");
+            }
+            }">@dash.displayName</option>
+    }
+</select>
+
+@foreach (var tile in Model.value)
+{
+    <div>@tile.title</div>
+    <iframe src="@(tile.embedUrl)" onload="postActionLoadTile(this)" width="750" height="525" frameborder="1"></iframe>
+}
+
+<h2>Index</h2>
+

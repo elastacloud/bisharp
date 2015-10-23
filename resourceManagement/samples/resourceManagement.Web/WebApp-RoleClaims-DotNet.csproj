@@ -188,6 +188,7 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PowerBIController.cs" />
+    <Compile Include="DAL\RoleClaimContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -261,7 +262,7 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\BISharp\BISharp.csproj">
+    <ProjectReference Include="..\..\..\BISharp\BISharp.csproj">
       <Project>{0cc49747-5111-42fc-8a13-e4e68b95a8e3}</Project>
       <Name>BISharp</Name>
     </ProjectReference>
