@@ -16,7 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{3FB3
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "resourceManagement", "samples\resourceManagement\resourceManagement.csproj", "{786AAEB3-DD86-44A5-B21A-8B5F256A521A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp-RoleClaims-DotNet", "samples\resourceManagement.Web\WebApp-RoleClaims-DotNet.csproj", "{BF85A21D-737E-4231-BC48-911F3F3123E8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "resourceManagement.Web", "samples\resourceManagement.Web\resourceManagement.Web.csproj", "{BF85A21D-737E-4231-BC48-911F3F3123E8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
