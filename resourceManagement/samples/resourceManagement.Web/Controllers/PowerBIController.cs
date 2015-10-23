@@ -15,8 +15,6 @@ namespace WebApp_RoleClaims_DotNet.Controllers
 {
     public class powerbiWebToken : IExternalAuth
     {
-        private IPrincipal _principal;
-
         public powerbiWebToken()
         {
         }
