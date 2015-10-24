@@ -84,7 +84,7 @@ namespace resourceManagement
             //var table = dataClient.GetTable(created.id, tables.value.First().name);
             //ListColumns(table.columns);
 
-            var table = await dataClient.UpdateTableSchema(created.id, tables.value.First().name, typeof(resourceMeasures2));
+            var table = await dataClient.UpdateTableSchema<resourceMeasures2>(created.id, tables.value.First().name);
         }
 
         private async static Task GenerateData()
