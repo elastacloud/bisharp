@@ -61,35 +61,35 @@ namespace BISharp
         {
             return await Create(datasetName, string.Empty, useBasicFifoRetentionPolicy, new[] { typeof(T1), typeof(T2), typeof(T3), typeof(T4), typeof(T5), typeof(T6) });
         }
-        public async Task<Dataset> Create<T1>(string datasetName, string groupId, bool useBasicFifoRetentionPolicy)
+        public async Task<Dataset> Create<T1>(string groupId, string datasetName, bool useBasicFifoRetentionPolicy)
         {
-            return await Create(datasetName, groupId, useBasicFifoRetentionPolicy, new[] { typeof(T1) });
+            return await Create(groupId, datasetName, useBasicFifoRetentionPolicy, new[] { typeof(T1) });
         }
-        public async Task<Dataset> Create<T1, T2>(string datasetName, string groupId, bool useBasicFifoRetentionPolicy)
+        public async Task<Dataset> Create<T1, T2>(string groupId, string datasetName, bool useBasicFifoRetentionPolicy)
         {
-            return await Create(datasetName, groupId, useBasicFifoRetentionPolicy, new[] { typeof(T1), typeof(T2) });
+            return await Create(groupId, datasetName, useBasicFifoRetentionPolicy, new[] { typeof(T1), typeof(T2) });
         }
-        public async Task<Dataset> Create<T1, T2, T3>(string datasetName, string groupId, bool useBasicFifoRetentionPolicy)
+        public async Task<Dataset> Create<T1, T2, T3>(string groupId, string datasetName, bool useBasicFifoRetentionPolicy)
         {
-            return await Create(datasetName, groupId, useBasicFifoRetentionPolicy, new[] { typeof(T1), typeof(T2), typeof(T3) });
+            return await Create(groupId, datasetName, useBasicFifoRetentionPolicy, new[] { typeof(T1), typeof(T2), typeof(T3) });
         }
-        public async Task<Dataset> Create<T1, T2, T3, T4>(string datasetName, string groupId, bool useBasicFifoRetentionPolicy)
+        public async Task<Dataset> Create<T1, T2, T3, T4>(string groupId, string datasetName, bool useBasicFifoRetentionPolicy)
         {
-            return await Create(datasetName, groupId, useBasicFifoRetentionPolicy, new[] { typeof(T1), typeof(T2), typeof(T3), typeof(T4) });
+            return await Create(groupId, datasetName, useBasicFifoRetentionPolicy, new[] { typeof(T1), typeof(T2), typeof(T3), typeof(T4) });
         }
-        public async Task<Dataset> Create<T1, T2, T3, T4, T5>(string datasetName, string groupId, bool useBasicFifoRetentionPolicy)
+        public async Task<Dataset> Create<T1, T2, T3, T4, T5>(string groupId, string datasetName, bool useBasicFifoRetentionPolicy)
         {
-            return await Create(datasetName, groupId, useBasicFifoRetentionPolicy, new[] { typeof(T1), typeof(T2), typeof(T3), typeof(T4), typeof(T5) });
+            return await Create(groupId, datasetName, useBasicFifoRetentionPolicy, new[] { typeof(T1), typeof(T2), typeof(T3), typeof(T4), typeof(T5) });
         }
-        public async Task<Dataset> Create<T1, T2, T3, T4, T5, T6>(string datasetName, string groupId, bool useBasicFifoRetentionPolicy)
+        public async Task<Dataset> Create<T1, T2, T3, T4, T5, T6>(string groupId, string datasetName, bool useBasicFifoRetentionPolicy)
         {
-            return await Create(datasetName, groupId, useBasicFifoRetentionPolicy, new[] { typeof(T1), typeof(T2), typeof(T3), typeof(T4), typeof(T5), typeof(T6) });
+            return await Create(groupId, datasetName, useBasicFifoRetentionPolicy, new[] { typeof(T1), typeof(T2), typeof(T3), typeof(T4), typeof(T5), typeof(T6) });
         }
         public async Task<Dataset> Create(string datasetName, bool useBasicFifoRetentionPolicy, params Type[] tableStructures)
         {
-            return await Create(datasetName, string.Empty, useBasicFifoRetentionPolicy, tableStructures);
+            return await Create(string.Empty, datasetName, useBasicFifoRetentionPolicy, tableStructures);
         }
-        public async Task<Dataset> Create(string datasetName, string groupId, bool useBasicFifoRetentionPolicy, params Type[] tableStructures)
+        public async Task<Dataset> Create(string groupId, string datasetName, bool useBasicFifoRetentionPolicy, params Type[] tableStructures)
         {
             var defaultRetentionPolicy = useBasicFifoRetentionPolicy ? "basicFIFO" : "None";
             var tables = tableStructures.Select(t => Table.FromType(t)).ToList();
@@ -106,9 +106,9 @@ namespace BISharp
         }
         public async Task<Tables> ListTables(string datasetId)
         {
-            return await ListTables(datasetId, string.Empty);
+            return await ListTables(string.Empty, datasetId);
         }
-        public async Task<Tables> ListTables(string datasetId, string groupId)
+        public async Task<Tables> ListTables(string groupId, string datasetId)
         {
             var request = new RestRequest(_addresses.GetDatasetTables(groupId), Method.GET);
             request.AddUrlSegment("datasetId", datasetId);
