@@ -2,6 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Bisharp</id>
+	<description>This project is an SDK for controlling PowerBI with C#. It's key goals are to simplify data access and authentication, allowing easy and rapid access to core PowerBI assets.</description>
     <version>2.2.0</version>
     <authors>Elastacloud</authors>
     <dependencies>
