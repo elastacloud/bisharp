@@ -9,3 +9,4 @@ C:\src\powerbi\BISharp\bin\Debug\Newtonsoft.Json.xml
 C:\src\powerbi\BISharp\bin\Debug\RestSharp.xml
 C:\src\powerbi\BISharp\obj\Debug\BISharp.dll
 C:\src\powerbi\BISharp\obj\Debug\BISharp.pdb
+C:\src\powerbi\BISharp\obj\Debug\BISharp.csprojResolveAssemblyReference.cache
