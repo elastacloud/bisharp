@@ -39,27 +39,27 @@ namespace BISharp
         }
         public async Task<Dataset> Create<T1>(string datasetName, bool useBasicFifoRetentionPolicy)
         {
-            return await Create(datasetName, string.Empty, useBasicFifoRetentionPolicy, new[] { typeof(T1) });
+            return await Create(string.Empty, datasetName, useBasicFifoRetentionPolicy, new[] { typeof(T1) });
         }
         public async Task<Dataset> Create<T1, T2>(string datasetName, bool useBasicFifoRetentionPolicy)
         {
-            return await Create(datasetName, string.Empty, useBasicFifoRetentionPolicy, new[] { typeof(T1), typeof(T2) });
+            return await Create(string.Empty, datasetName, useBasicFifoRetentionPolicy, new[] { typeof(T1), typeof(T2) });
         }
         public async Task<Dataset> Create<T1, T2, T3>(string datasetName, bool useBasicFifoRetentionPolicy)
         {
-            return await Create(datasetName, string.Empty, useBasicFifoRetentionPolicy, new[] { typeof(T1), typeof(T2), typeof(T3) });
+            return await Create(string.Empty, datasetName, useBasicFifoRetentionPolicy, new[] { typeof(T1), typeof(T2), typeof(T3) });
         }
         public async Task<Dataset> Create<T1, T2, T3, T4>(string datasetName, bool useBasicFifoRetentionPolicy)
         {
-            return await Create(datasetName, string.Empty, useBasicFifoRetentionPolicy, new[] { typeof(T1), typeof(T2), typeof(T3), typeof(T4) });
+            return await Create(string.Empty, datasetName, useBasicFifoRetentionPolicy, new[] { typeof(T1), typeof(T2), typeof(T3), typeof(T4) });
         }
         public async Task<Dataset> Create<T1, T2, T3, T4, T5>(string datasetName, bool useBasicFifoRetentionPolicy)
         {
-            return await Create(datasetName, string.Empty, useBasicFifoRetentionPolicy, new[] { typeof(T1), typeof(T2), typeof(T3), typeof(T4), typeof(T5) });
+            return await Create(string.Empty, datasetName, useBasicFifoRetentionPolicy, new[] { typeof(T1), typeof(T2), typeof(T3), typeof(T4), typeof(T5) });
         }
         public async Task<Dataset> Create<T1, T2, T3, T4, T5, T6>(string datasetName, bool useBasicFifoRetentionPolicy)
         {
-            return await Create(datasetName, string.Empty, useBasicFifoRetentionPolicy, new[] { typeof(T1), typeof(T2), typeof(T3), typeof(T4), typeof(T5), typeof(T6) });
+            return await Create(string.Empty, datasetName, useBasicFifoRetentionPolicy, new[] { typeof(T1), typeof(T2), typeof(T3), typeof(T4), typeof(T5), typeof(T6) });
         }
         public async Task<Dataset> Create<T1>(string groupId, string datasetName, bool useBasicFifoRetentionPolicy)
         {
@@ -102,6 +102,7 @@ namespace BISharp
             request.AddBody(dataset);
 
             var response = await _client.ExecuteTaskAsync<Dataset>(request);
+            HandleResponseErrors(response);
             return response.Data;
         }
         public async Task<Tables> ListTables(string datasetId)
@@ -175,6 +176,21 @@ namespace BISharp
 
             var response = await _client.ExecuteTaskAsync<Table>(request);
             return response.Data;
+        }
+        public void HandleResponseErrors(IRestResponse response)
+        {
+            if (((int)response.StatusCode) == 400)
+            {
+                throw new BISharpRequestException(response);
+            }
+
+            if (((int)response.StatusCode) == 401)
+            {
+                throw new BISharpAuthenticationException(response);
+            }
+
+            if (response.ErrorException != null)
+                throw response.ErrorException;
         }
     }
 }
