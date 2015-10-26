@@ -53,7 +53,7 @@ namespace BISharp.Addressing
             }
             else
             {
-                return "v1.0/myorg/datasets/groups/" + groupId + "/{datasetId}/tables/{tableName}";
+                return "v1.0/myorg/groups/" + groupId + "/datasets/{datasetId}/tables/{tableName}";
             }
         }
         public string AddOrRemoveRows(string groupId)
