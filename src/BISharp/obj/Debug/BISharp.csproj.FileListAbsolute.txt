@@ -12,6 +12,13 @@ C:\src\powerbi\BISharp\obj\Debug\BISharp.pdb
 C:\src\powerbi\BISharp\obj\Debug\BISharp.csprojResolveAssemblyReference.cache
 C:\src\powerbi\bisharp\src\BISharp\bin\Debug\BISharp.dll
 C:\src\powerbi\bisharp\src\BISharp\bin\Debug\BISharp.pdb
-C:\src\powerbi\bisharp\src\BISharp\obj\Debug\BISharp.csprojResolveAssemblyReference.cache
 C:\src\powerbi\bisharp\src\BISharp\obj\Debug\BISharp.dll
 C:\src\powerbi\bisharp\src\BISharp\obj\Debug\BISharp.pdb
+C:\src\powerbi\bisharp\src\BISharp\bin\Debug\Microsoft.IdentityModel.Clients.ActiveDirectory.dll
+C:\src\powerbi\bisharp\src\BISharp\bin\Debug\Microsoft.IdentityModel.Clients.ActiveDirectory.WindowsForms.dll
+C:\src\powerbi\bisharp\src\BISharp\bin\Debug\Newtonsoft.Json.dll
+C:\src\powerbi\bisharp\src\BISharp\bin\Debug\RestSharp.dll
+C:\src\powerbi\bisharp\src\BISharp\bin\Debug\Microsoft.IdentityModel.Clients.ActiveDirectory.xml
+C:\src\powerbi\bisharp\src\BISharp\bin\Debug\Newtonsoft.Json.xml
+C:\src\powerbi\bisharp\src\BISharp\bin\Debug\RestSharp.xml
+C:\src\powerbi\bisharp\src\BISharp\obj\Debug\BISharp.csprojResolveAssemblyReference.cache
