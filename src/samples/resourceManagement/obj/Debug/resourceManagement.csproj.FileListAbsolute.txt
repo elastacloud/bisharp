@@ -39,7 +39,6 @@ C:\src\powerbi\bisharp\src\samples\resourceManagement\bin\Debug\Newtonsoft.Json.
 C:\src\powerbi\bisharp\src\samples\resourceManagement\bin\Debug\BISharp.pdb
 C:\src\powerbi\bisharp\src\samples\resourceManagement\bin\Debug\Microsoft.IdentityModel.Clients.ActiveDirectory.xml
 C:\src\powerbi\bisharp\src\samples\resourceManagement\bin\Debug\RestSharp.xml
-C:\src\powerbi\bisharp\src\samples\resourceManagement\bin\Debug\Newtonsoft.Json.xml
 C:\src\powerbi\bisharp\src\samples\resourceManagement\obj\Debug\resourceManagement.csprojResolveAssemblyReference.cache
 C:\src\powerbi\bisharp\src\samples\resourceManagement\obj\Debug\resourceManagement.exe
 C:\src\powerbi\bisharp\src\samples\resourceManagement\obj\Debug\resourceManagement.pdb
