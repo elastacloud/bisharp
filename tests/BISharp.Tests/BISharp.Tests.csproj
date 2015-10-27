@@ -68,7 +68,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\BISharp\BISharp.csproj">
+    <ProjectReference Include="..\..\BISharp\BISharp.csproj">
       <Project>{0cc49747-5111-42fc-8a13-e4e68b95a8e3}</Project>
       <Name>BISharp</Name>
     </ProjectReference>
