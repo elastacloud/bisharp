@@ -58,6 +58,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Addressing\DashboardAddressesTest.cs" />
     <Compile Include="Addressing\DatasetAddressesTest.cs" />
     <Compile Include="Authentication\DashboardClientTests.cs" />
     <Compile Include="DataSchema\ColumnsFromTypeTests.cs" />

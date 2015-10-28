@@ -44,6 +44,16 @@ namespace BISharp.Addressing
             }
         }
 
+        public string GetDashboard(string empty)
+        {
+            return "beta/myorg/dashboards/{dashboardId}";
+        }
+
+        public string GetDashboards(string groupId)
+        {
+            return "beta/myorg/dashboards";
+        }
+
         public string UpdateTableSchema(string groupId)
         {
             //"v1.0/myorg/datasets/{datasetId}/tables/{tableName}"
@@ -56,6 +66,17 @@ namespace BISharp.Addressing
                 return "v1.0/myorg/groups/" + groupId + "/datasets/{datasetId}/tables/{tableName}";
             }
         }
+
+        public string GetDashboardTiles(string empty)
+        {
+            return "beta/myorg/dashboards/{dashboardId}/tiles";
+        }
+
+        public string GetDashboardTile(string empty)
+        {
+            return "beta/myorg/dashboards/{dashboardId}/tiles/{tileId}";
+        }
+
         public string AddOrRemoveRows(string groupId)
         {
             //"v1.0/myorg/groups/{group_id}/datasets/{dataset_id}/tables/{table_name}/rows"
