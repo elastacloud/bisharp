@@ -44,14 +44,28 @@ namespace BISharp.Addressing
             }
         }
 
-        public string GetDashboard(string empty)
+        public string GetDashboard(string groupId)
         {
-            return "beta/myorg/dashboards/{dashboardId}";
+            if (string.IsNullOrEmpty(groupId))
+            {
+                return "beta/myorg/dashboards/{dashboardId}";
+            }
+            else
+            {
+                return "beta/myorg/groups/" + groupId + "/dashboards/{dashboardId}";
+            }
         }
 
         public string GetDashboards(string groupId)
         {
-            return "beta/myorg/dashboards";
+            if (string.IsNullOrEmpty(groupId))
+            {
+                return "beta/myorg/dashboards";
+            }
+            else
+            {
+                return "beta/myorg/groups/" + groupId + "/dashboards";
+            }
         }
 
         public string UpdateTableSchema(string groupId)
@@ -67,14 +81,28 @@ namespace BISharp.Addressing
             }
         }
 
-        public string GetDashboardTiles(string empty)
+        public string GetDashboardTiles(string groupId)
         {
-            return "beta/myorg/dashboards/{dashboardId}/tiles";
+            if (string.IsNullOrEmpty(groupId))
+            {
+                return "beta/myorg/dashboards/{dashboardId}/tiles";
+            }
+            else
+            {
+                return "beta/myorg/groups/" + groupId + "/dashboards/{dashboardId}/tiles"; 
+            }
         }
 
-        public string GetDashboardTile(string empty)
+        public string GetDashboardTile(string groupId)
         {
-            return "beta/myorg/dashboards/{dashboardId}/tiles/{tileId}";
+            if (string.IsNullOrEmpty(groupId))
+            {
+                return "beta/myorg/dashboards/{dashboardId}/tiles/{tileId}";
+            }
+            else
+            {
+                return "beta/myorg/groups/" + groupId + "/dashboards/{dashboardId}/tiles/{tileId}";
+            }
         }
 
         public string AddOrRemoveRows(string groupId)

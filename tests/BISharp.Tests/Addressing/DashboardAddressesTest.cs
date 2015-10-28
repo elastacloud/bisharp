@@ -53,5 +53,48 @@ namespace BISharp.Tests.Addressing
 
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void GroupId_GetDashboards_ValidUrl()
+        {
+            var expected = "beta/myorg/groups/123/dashboards";
+            var addresses = new PowerBiAddresses();
+
+            var actual = addresses.GetDashboards("123");
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void GroupId_GetDashboardById_ValidUrl()
+        {
+            var expected = "beta/myorg/groups/123/dashboards/{dashboardId}";
+            var addresses = new PowerBiAddresses();
+
+            var actual = addresses.GetDashboard("123");
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void GroupId_GetDashboardTiles_ValidUrl()
+        {
+            var expected = "beta/myorg/groups/123/dashboards/{dashboardId}/tiles";
+            var addresses = new PowerBiAddresses();
+
+            var actual = addresses.GetDashboardTiles("123");
+
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void GroupId_GetDashboardTileById_ValidUrl()
+        {
+            var expected = "beta/myorg/groups/123/dashboards/{dashboardId}/tiles/{tileId}";
+            var addresses = new PowerBiAddresses();
+
+            var actual = addresses.GetDashboardTile("123");
+
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
