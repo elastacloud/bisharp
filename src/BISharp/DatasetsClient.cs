@@ -146,6 +146,7 @@ namespace BISharp
             request.AddUrlSegment("tableName", tableName);
 
             var response = await _client.ExecuteTaskAsync<Table>(request);
+            HandleResponseErrors(response);
             return response.Data;
         }
         public async Task<Table> AddRows<TTableRows>(string datasetId, string tableName, TableRows<TTableRows> rows)
@@ -162,6 +163,7 @@ namespace BISharp
             request.AddUrlSegment("tableName", tableName);
 
             var response = await _client.ExecuteTaskAsync<Table>(request);
+            HandleResponseErrors(response);
             return response.Data;
         }
         public async Task<Table> ClearRows(string datasetId, string tableName)
@@ -175,6 +177,7 @@ namespace BISharp
             request.AddUrlSegment("tableName", tableName);
 
             var response = await _client.ExecuteTaskAsync<Table>(request);
+            HandleResponseErrors(response);
             return response.Data;
         }
         public void HandleResponseErrors(IRestResponse response)
