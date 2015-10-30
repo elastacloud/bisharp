@@ -41,7 +41,7 @@ namespace BISharp.Tests.DataSchema
             var type = typeof(Uri);
             var actual = Table.FromType(type);
 
-            Assert.AreEqual("String", actual.columns.First().dataType);
+            Assert.AreEqual("string", actual.columns.First().dataType);
         }
     }
 }
