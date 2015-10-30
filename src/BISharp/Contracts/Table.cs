@@ -39,14 +39,14 @@ namespace BISharp.Contracts
             }
             if (propertyType == typeof(bool))
             {
-                return "Boolean";
+                return "bool";
             }
             if (propertyType == typeof(DateTime))
             {
-                return "Datetime";
+                return "DateTime";
             }
 
-            return "String";
+            return "string";
         }
     }
 
