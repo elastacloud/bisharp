@@ -1,5 +1,6 @@
 ﻿using BISharp.Addressing;
 using BISharp.Contracts;
+using BISharp.Validation;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -102,7 +103,7 @@ namespace BISharp
             request.AddBody(dataset);
 
             var response = await _client.ExecuteTaskAsync<Dataset>(request);
-            HandleResponseErrors(response);
+            ResponseValidation.HandleResponseErrors(response);
             return response.Data;
         }
         public async Task<Tables> ListTables(string datasetId)
@@ -146,7 +147,7 @@ namespace BISharp
             request.AddUrlSegment("tableName", tableName);
 
             var response = await _client.ExecuteTaskAsync<Table>(request);
-            HandleResponseErrors(response);
+            ResponseValidation.HandleResponseErrors(response);
             return response.Data;
         }
         public async Task<Table> AddRows<TTableRows>(string datasetId, string tableName, TableRows<TTableRows> rows)
@@ -163,7 +164,7 @@ namespace BISharp
             request.AddUrlSegment("tableName", tableName);
 
             var response = await _client.ExecuteTaskAsync<Table>(request);
-            HandleResponseErrors(response);
+            ResponseValidation.HandleResponseErrors(response);
             return response.Data;
         }
         public async Task<Table> ClearRows(string datasetId, string tableName)
@@ -177,23 +178,8 @@ namespace BISharp
             request.AddUrlSegment("tableName", tableName);
 
             var response = await _client.ExecuteTaskAsync<Table>(request);
-            HandleResponseErrors(response);
+            ResponseValidation.HandleResponseErrors(response);
             return response.Data;
-        }
-        public void HandleResponseErrors(IRestResponse response)
-        {
-            if (((int)response.StatusCode) == 400)
-            {
-                throw new BISharpRequestException(response);
-            }
-
-            if (((int)response.StatusCode) == 401)
-            {
-                throw new BISharpAuthenticationException(response);
-            }
-
-            if (response.ErrorException != null)
-                throw response.ErrorException;
         }
     }
 }

@@ -21,3 +21,4 @@ C:\src\powerbi\bisharp\src\BISharp\bin\Debug\RestSharp.dll
 C:\src\powerbi\bisharp\src\BISharp\bin\Debug\Microsoft.IdentityModel.Clients.ActiveDirectory.xml
 C:\src\powerbi\bisharp\src\BISharp\bin\Debug\Newtonsoft.Json.xml
 C:\src\powerbi\bisharp\src\BISharp\bin\Debug\RestSharp.xml
+C:\src\powerbi\bisharp\src\BISharp\obj\Debug\BISharp.csprojResolveAssemblyReference.cache

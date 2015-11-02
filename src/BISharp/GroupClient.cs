@@ -1,4 +1,5 @@
 ﻿using BISharp.Contracts;
+using BISharp.Validation;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -28,6 +29,7 @@ namespace BISharp
             var request = new RestRequest($"v1.0/myorg/groups", Method.GET);
 
             var response = await _client.ExecuteTaskAsync<Groups>(request, _cancellationToken.Token);
+            ResponseValidation.HandleResponseErrors(response);
             return response.Data;
         }
     }

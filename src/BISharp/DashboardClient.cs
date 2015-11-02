@@ -1,5 +1,6 @@
 ﻿using BISharp.Addressing;
 using BISharp.Contracts;
+using BISharp.Validation;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -35,6 +36,7 @@ namespace BISharp
             var request = new RestRequest(_addresses.GetDashboards(groupId), Method.GET);
 
             var response = await _client.ExecuteTaskAsync<Dashboards>(request, _cancellationToken.Token);
+            ResponseValidation.HandleResponseErrors(response);
             return response.Data;
         }
         public async Task<Dashboard> Get(string dashboardId)
@@ -47,6 +49,7 @@ namespace BISharp
             request.AddUrlSegment("dashboardId", dashboardId);
 
             var response = await _client.ExecuteTaskAsync<Dashboard>(request, _cancellationToken.Token);
+            ResponseValidation.HandleResponseErrors(response);
             return response.Data;
         }
         public async Task<Tiles> Tiles(string dashboardId)
@@ -59,6 +62,7 @@ namespace BISharp
             request.AddUrlSegment("dashboardId", dashboardId);
 
             var response = await _client.ExecuteTaskAsync<Tiles>(request, _cancellationToken.Token);
+            ResponseValidation.HandleResponseErrors(response);
             return response.Data;
         }
         public async Task<Tile> TilesGet(string dashboardId, string tileId)
@@ -72,6 +76,7 @@ namespace BISharp
             request.AddUrlSegment("tileId", tileId);
 
             var response = await _client.ExecuteTaskAsync<Tile>(request, _cancellationToken.Token);
+            ResponseValidation.HandleResponseErrors(response);
             return response.Data;
         }
     }
