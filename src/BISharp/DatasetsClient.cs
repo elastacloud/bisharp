@@ -15,6 +15,7 @@ namespace BISharp
         private IPowerBiAuthentication _bi;
         private IRestClient _client;
         private PowerBiAddresses _addresses;
+        private readonly int Buffer = 1000;
 
         public DatasetsClient(IPowerBiAuthentication bi) : this(bi, new RestClient("https://api.powerbi.com"))
         {
@@ -154,17 +155,34 @@ namespace BISharp
         {
             return await AddRows<TTableRows>(string.Empty, datasetId, tableName, rows);
         }
+
         public async Task<Table> AddRows<TTableRows>(string groupId, string datasetId, string tableName, TableRows<TTableRows> rows)
         {
-            var request = new RestRequest(_addresses.AddOrRemoveRows(groupId), Method.POST)
-            { JsonSerializer = new Serialization.JsonSerializer() };
-            request.RequestFormat = DataFormat.Json;
-            request.AddBody(rows);
-            request.AddUrlSegment("datasetId", datasetId);
-            request.AddUrlSegment("tableName", tableName);
+            var length = rows.rows.Count;
+            var numOfSkips = (int)Math.Ceiling((double)length / Buffer);
 
-            var response = await _client.ExecuteTaskAsync<Table>(request);
-            ResponseValidation.HandleResponseErrors(response);
+            IRestResponse<Table> response = null;
+            var count = 0;
+            while (count <= numOfSkips)
+            {
+                TableRows<TTableRows> bufferTableEntries = new TableRows<TTableRows>();
+                var numremaining = length - count * Buffer;
+                bufferTableEntries.rows.AddRange(rows.rows.Skip(count).Take(numremaining > Buffer ? Buffer : numremaining));
+                var request = new RestRequest(_addresses.AddOrRemoveRows(groupId), Method.POST)
+                { JsonSerializer = new Serialization.JsonSerializer() };
+                request.RequestFormat = DataFormat.Json;
+                request.AddBody(rows);
+                request.AddUrlSegment("datasetId", datasetId);
+                request.AddUrlSegment("tableName", tableName);
+
+                response = await _client.ExecuteTaskAsync<Table>(request);
+                ResponseValidation.HandleResponseErrors(response);
+                count++;
+            }
+
+            if (response == null)
+                throw new BISharpRequestException("Error recieving response");
+
             return response.Data;
         }
         public async Task<Table> ClearRows(string datasetId, string tableName)
