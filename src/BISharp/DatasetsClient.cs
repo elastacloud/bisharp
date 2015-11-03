@@ -171,7 +171,7 @@ namespace BISharp
                 var request = new RestRequest(_addresses.AddOrRemoveRows(groupId), Method.POST)
                 { JsonSerializer = new Serialization.JsonSerializer() };
                 request.RequestFormat = DataFormat.Json;
-                request.AddBody(rows);
+                request.AddBody(bufferTableEntries);
                 request.AddUrlSegment("datasetId", datasetId);
                 request.AddUrlSegment("tableName", tableName);
 
