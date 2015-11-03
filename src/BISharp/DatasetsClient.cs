@@ -167,7 +167,7 @@ namespace BISharp
             {
                 TableRows<TTableRows> bufferTableEntries = new TableRows<TTableRows>();
                 var numremaining = length - count * Buffer;
-                bufferTableEntries.rows.AddRange(rows.rows.Skip(count).Take(numremaining > Buffer ? Buffer : numremaining));
+                bufferTableEntries.rows.AddRange(rows.rows.Skip(count*Buffer).Take(numremaining > Buffer ? Buffer : numremaining));
                 var request = new RestRequest(_addresses.AddOrRemoveRows(groupId), Method.POST)
                 { JsonSerializer = new Serialization.JsonSerializer() };
                 request.RequestFormat = DataFormat.Json;

@@ -33,3 +33,4 @@ C:\Users\david\Work\elastacloud\bisharp\src\BISharp\bin\Debug\Newtonsoft.Json.xm
 C:\Users\david\Work\elastacloud\bisharp\src\BISharp\bin\Debug\RestSharp.xml
 C:\Users\david\Work\elastacloud\bisharp\src\BISharp\obj\Debug\BISharp.dll
 C:\Users\david\Work\elastacloud\bisharp\src\BISharp\obj\Debug\BISharp.pdb
+C:\Users\david\Work\elastacloud\bisharp\src\BISharp\obj\Debug\BISharp.csprojResolveAssemblyReference.cache
