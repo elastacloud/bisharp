@@ -14,8 +14,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{D3E4DE3E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BISharp.Tests", "tests\BISharp.Tests\BISharp.Tests.csproj", "{C4248E20-DCC8-4C20-AE0F-06DAD818AB11}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication1", "ConsoleApplication1\ConsoleApplication1.csproj", "{14C57A1A-81D4-433C-BD0F-7EBB5F5D98A3}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,10 +28,6 @@ Global
 		{C4248E20-DCC8-4C20-AE0F-06DAD818AB11}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C4248E20-DCC8-4C20-AE0F-06DAD818AB11}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C4248E20-DCC8-4C20-AE0F-06DAD818AB11}.Release|Any CPU.Build.0 = Release|Any CPU
-		{14C57A1A-81D4-433C-BD0F-7EBB5F5D98A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{14C57A1A-81D4-433C-BD0F-7EBB5F5D98A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{14C57A1A-81D4-433C-BD0F-7EBB5F5D98A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{14C57A1A-81D4-433C-BD0F-7EBB5F5D98A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
