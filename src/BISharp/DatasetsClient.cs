@@ -150,18 +150,18 @@ namespace BISharp
             ResponseValidation.HandleResponseErrors(response);
             return response.Data;
         }
-        public async Task<Table> AddRows<TTableRows>(string datasetId, string tableName, TableRows<TTableRows> rows)
+        public async Task<Table> AddRows<TTableRows>(string datasetId, TableRows<TTableRows> rows)
         {
-            return await AddRows<TTableRows>(string.Empty, datasetId, tableName, rows);
+            return await AddRows<TTableRows>(string.Empty, datasetId, rows);
         }
-        public async Task<Table> AddRows<TTableRows>(string groupId, string datasetId, string tableName, TableRows<TTableRows> rows)
+        public async Task<Table> AddRows<TTableRows>(string groupId, string datasetId, TableRows<TTableRows> rows)
         {
             var request = new RestRequest(_addresses.AddOrRemoveRows(groupId), Method.POST)
             { JsonSerializer = new Serialization.JsonSerializer() };
             request.RequestFormat = DataFormat.Json;
             request.AddBody(rows);
             request.AddUrlSegment("datasetId", datasetId);
-            request.AddUrlSegment("tableName", tableName);
+            request.AddUrlSegment("tableName", typeof(TTableRows).Name);
 
             var response = await _client.ExecuteTaskAsync<Table>(request);
             ResponseValidation.HandleResponseErrors(response);
