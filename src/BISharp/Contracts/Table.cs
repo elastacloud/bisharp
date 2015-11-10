@@ -56,14 +56,4 @@ namespace BISharp.Contracts
         public string dataType { get; set; }
     }
 
-    public class TableRows<T>
-    {
-        public List<T> rows { get; set; }
-
-        public TableRows()
-        {
-            rows = new List<T>();
-        }
-        
-    }
 }

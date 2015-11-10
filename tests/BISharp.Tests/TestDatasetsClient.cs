@@ -29,11 +29,11 @@ namespace BISharp.Tests
             client.Setup(inst => inst.Create("PowerByTheHour", false, typeof (Row)).Result).Returns(dataset);
             var tableId = client.Object.Create("PowerByTheHour", false, typeof (Row)).Result;
 
-            TableRows<Row> table =  new TableRows<Row>();
+            List<Row> table =  new List<Row>();
 
             for (int i = 0; i < 5000; i++)
             {
-                table.rows.Add(new Row()
+                table.Add(new Row()
                 {
                     key = Guid.NewGuid().ToString(),
                     value = Guid.NewGuid().ToString()
